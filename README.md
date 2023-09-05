@@ -18,11 +18,3 @@ touch hello.ipynb
 from ipyblender_experimental import BlenderWidget
 BlenderWidget()
 ```
-
-
-
-
-```sh
-pip install ipyblender_experimental
-```
-
