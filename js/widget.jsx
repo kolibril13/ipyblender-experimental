@@ -1,15 +1,20 @@
 import * as React from "react";
 import { createRender, useModelState } from "@anywidget/react";
-import "./styles.css";
 
 export const render = createRender(() => {
-	const [value, setValue] = useModelState("value");
-	return (
-		<button
-			className="ipyblender_experimental-counter-button"
-			onClick={() => setValue(value + 1)}
-		>
-			count is {value}
-		</button>
-	);
+  const [label] = useModelState("label");
+  let [count, setCount] = useModelState("count");
+  function handleClick() {
+    console.log("button clicked");
+    setCount(count + 1);
+  }
+
+  return (
+    <div>
+      Click to change color <br />
+      <button onClick={handleClick}>
+        {label} {count}
+      </button>
+    </div>
+  );
 });
