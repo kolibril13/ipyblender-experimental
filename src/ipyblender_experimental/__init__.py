@@ -89,7 +89,7 @@ def hello(counter):
 
 
 
-class Counter(anywidget.AnyWidget):
+class BlenderWidget(anywidget.AnyWidget):
     label = Unicode("Color: ").tag(sync=True)
     base64Image = Unicode(
         "data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
