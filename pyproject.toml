@@ -1,10 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "ipyblender_experimental"
-version = "0.0.1"
+version = "0.0.2"
+requires-python = "~=3.10.0"
 dependencies = [
     "anywidget",
     "watchfiles",
     "ipykernel",
     "bpy",
-
 ]
+
+[tool.hatch.build]
+artifacts = ["src/ipyblender_experimental/static/*"]
+
+[tool.hatch.build.hooks.jupyter-builder]
+build-function = "hatch_jupyter_builder.npm_builder"
+ensured-targets = ["src/ipyblender_experimental/static/widget.js"]
+skip-if-exists = ["src/ipyblender_experimental/static/widget.js"]
+dependencies = ["hatch-jupyter-builder>=0.5.0"]
