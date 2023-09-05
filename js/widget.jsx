@@ -13,13 +13,13 @@ export const render = createRender(() => {
 
   return (
     <div>
-      Click to change color <br />
       <button onClick={handleClick}>
         {label} {count}
+        <br />
       </button>
-      <br/>
+      {count == 0 && <> 👈 Click to change color</>}
+      <br />
       <img src={base64Image} alt="8x8 Transparent PNG" />
-
     </div>
   );
 });
