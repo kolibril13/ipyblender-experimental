@@ -1,6 +1,11 @@
 import * as React from "react";
 import { createRender, useModelState } from "@anywidget/react";
 
+import Box from "@mui/material/Box";
+import Slider from "@mui/material/Slider";
+
+import Button from "@mui/material/Button";
+
 export const render = createRender(() => {
   const [label] = useModelState("label");
   let [count, setCount] = useModelState("count");
@@ -13,11 +18,17 @@ export const render = createRender(() => {
 
   return (
     <div>
-      <button onClick={handleClick}>
+      <Button variant="contained" onClick={handleClick}>
+        {" "}
         {label} {count}
-        <br />
-      </button>
-      {count == 0 && <> 👈 Click to change color</>}
+      </Button>
+      <Box sx={{ width: 300 }}>
+        <Slider
+          defaultValue={50}
+          aria-label="Default"
+          valueLabelDisplay="off"
+        />
+      </Box>
       <br />
       <img src={base64Image} alt="8x8 Transparent PNG" />
     </div>
