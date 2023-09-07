@@ -14,7 +14,7 @@ import bpy
 from IPython.display import display, Image
 from pathlib import Path
 import base64
-def hello(counter):
+def hello(counter, light_position):
 
     # Clear all existing mesh objects
     bpy.ops.object.select_all(action="DESELECT")
@@ -101,16 +101,11 @@ class BlenderWidget(anywidget.AnyWidget):
 
     @observe("svalue")
     def _observe_svalue(self, change):
-        print(f"Old value: {change['old']}")
-        print(f"New value: {change['new']}")
-        print("--------------------------")
+        self.base64Image = hello(self.count, self.svalue)
 
     @observe("count")
     def _observe_count(self, change):
-        print(f"Old value: {change['old']}")
-        print(f"New value: {change['new']}")
-        print("--------------------------")
-        self.base64Image = hello(change["new"])
+        self.base64Image = hello(self.count, self.svalue)
 
     _esm = pathlib.Path(__file__).parent / "static" / "widget.js"
     # _css = pathlib.Path(__file__).parent / "static" / "widget.css"
