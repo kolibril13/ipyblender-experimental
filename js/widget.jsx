@@ -1,21 +1,9 @@
 import * as React from "react";
 import { createRender, useModelState } from "@anywidget/react";
 
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import Button from "@mui/material/Button";
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      light: "#D3D3D3", // Light gray in hex
-      main: "#FFA500", // Orange in hex
-      dark: "#FF8C00", // Dark orange in hex
-      contrastText: "#FFFFFF", // White in hex
-    },
-  },
-});
 
 export const render = createRender(() => {
   const [label] = useModelState("label");
@@ -33,30 +21,38 @@ export const render = createRender(() => {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <div>
-        <Box display="flex" alignItems="center" gap={2}>
-          <Button variant="contained" color="primary" onClick={handleClick}>
-            {label} {count}
-          </Button>
-          <Box sx={{ width: 300 }}>
-            <Slider
-              value={svalue}
-              onChange={handleSliderChange}
-              aria-label="Default"
-              valueLabelDisplay="off"
-              color="primary"
-              sx={{
-                ".MuiSlider-rail": {
-                  backgroundColor: "lightgrey",
-                },
-              }}
-            />
-          </Box>
+    <div>
+      <Box display="flex" alignItems="center" gap={2}>
+        <Button
+          variant="contained"
+          onClick={handleClick}
+          style={{ backgroundColor: "orange" }}
+        >
+          {label} {count}
+        </Button>
+        <Box sx={{ width: 300 }}>
+          <Slider
+            value={svalue}
+            onChange={handleSliderChange}
+            aria-label="Default"
+            valueLabelDisplay="off"
+            sx={{
+              color: "orange", // Changes thumb color
+              "& .MuiSlider-track": {
+                backgroundColor: "orange", // Changes track color
+              },
+              "& .MuiSlider-rail": {
+                backgroundColor: "lightgrey", // Optional: change rail color if desired
+              },
+              "& .MuiSlider-thumb:hover, & .MuiSlider-thumb.Mui-focusVisible": {
+                boxShadow: "0px 0px 0px 8px rgba(255,165,0,0.16)", // Changes the surrounding circle color to orange on hover and focus
+              },
+            }}
+          />
         </Box>
-        <br />
-        <img src={base64Image} alt="8x8 Transparent PNG" />
-      </div>
-    </ThemeProvider>
+      </Box>
+      <br />
+      <img src={base64Image} alt="8x8 Transparent PNG" />
+    </div>
   );
 });
