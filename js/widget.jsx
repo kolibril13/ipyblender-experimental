@@ -26,8 +26,7 @@ export const render = createRender(() => {
         <Button
           variant="contained"
           onClick={handleClick}
-          style={{ backgroundColor: "orange" }}
-        >
+          style={{ backgroundColor: "#FFD580",color: "white" }}        >
           {label} {count}
         </Button>
         <Box sx={{ width: 300 }}>
@@ -37,9 +36,9 @@ export const render = createRender(() => {
             aria-label="Default"
             valueLabelDisplay="off"
             sx={{
-              color: "orange", // Changes thumb color
+              color: "#FFD580", 
               "& .MuiSlider-track": {
-                backgroundColor: "orange", // Changes track color
+                backgroundColor: "#FFD580", 
               },
               "& .MuiSlider-rail": {
                 backgroundColor: "lightgrey", // Optional: change rail color if desired
