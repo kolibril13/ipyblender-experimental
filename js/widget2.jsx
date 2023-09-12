@@ -15,8 +15,7 @@ function BlenderModel(props) {
   const [hovered, hover] = useState(false);
   const [clicked, click] = useState(false);
 
-  const torusModelUrl = "./cube_model.gltf";
-  const gltf = useLoader(GLTFLoader, torusModelUrl);
+  const gltf = useLoader(GLTFLoader, props.torusModelUrl);
 
   const scaleValue = clicked ? 1.5 : 1;
 
@@ -40,6 +39,7 @@ export const render = createRender(() => {
   let [count, setCount] = useModelState("count");
   let [svalue, setSvalue] = useModelState("svalue");
   let [base64Image, setBase64Image] = useModelState("base64Image");
+  let [torusname, setTorusname] = useModelState("torusname");
 
   function handleClick() {
     console.log("button clicked");
@@ -86,7 +86,7 @@ export const render = createRender(() => {
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
         <Suspense fallback={null}>
-          <BlenderModel position={[-3, -2, 0]} />
+          <BlenderModel position={[-3, -2, 0]} torusModelUrl={torusname} />
         </Suspense>
         <OrbitControls />
       </Canvas>

@@ -38,6 +38,7 @@ class BlenderInteractiveWidget(anywidget.AnyWidget):
         "data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
     ).tag(sync=True)
 
+    torusname = Unicode("./cube_model.gltf").tag(sync=True)
 
     count = Int(0).tag(sync=True)
     svalue = Float(30).tag(sync=True)
