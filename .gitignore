@@ -7,3 +7,6 @@ __pycache__
 
 src/ipyblender_experimental/static
 test.png
+
+*.gltf
+*.glb
