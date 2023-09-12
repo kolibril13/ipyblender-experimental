@@ -33,7 +33,23 @@ class BlenderWidget(anywidget.AnyWidget):
 
 
 class BlenderInteractiveWidget(anywidget.AnyWidget):
-    print("BlenderInteractiveWidget")
+    label = Unicode("Color: ").tag(sync=True)
+    base64Image = Unicode(
+        "data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
+    ).tag(sync=True)
 
-    _esm = pathlib.Path(__file__).parent / "static" / "widget2.js"
+
+    count = Int(0).tag(sync=True)
+    svalue = Float(30).tag(sync=True)
+
+    @observe("svalue")
+    def _observe_svalue(self, change):
+        self.base64Image = render_to_image(self.count, self.svalue)
+
+    @observe("count")
+    def _observe_count(self, change):
+        self.base64Image = render_to_image(self.count, self.svalue)
+
+    _esm = pathlib.Path(__file__).parent / "static" / "widget.js"
+    # _css = pathlib.Path(__file__).parent / "static" / "widget.css"
 

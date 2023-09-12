@@ -1,7 +1,7 @@
 {
 	"scripts": {
 		"dev": "npm run build -- --sourcemap=inline --watch",
-		"build": "esbuild --minify --format=esm --bundle --outdir=src/ipyblender_experimental/static js/widget.jsx"
+		"build": "esbuild --minify --format=esm --bundle --outdir=src/ipyblender_experimental/static js/*.jsx"
 	},
 	"dependencies": {
 		"@anywidget/react": "^0.0.2",
