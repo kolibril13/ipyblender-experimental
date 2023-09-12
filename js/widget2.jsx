@@ -4,10 +4,6 @@ import { Canvas } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "@react-three/drei";
 
-import Box from "@mui/material/Box";
-import Slider from "@mui/material/Slider";
-import Button from "@mui/material/Button";
-
 function BlenderModel(props) {
   const ref = useRef();
   const [clicked, click] = useState(false);
@@ -21,18 +17,11 @@ function BlenderModel(props) {
     });
   }, [jsonStr]);
 
-  const scaleValue = clicked ? 1.5 : 1;
-
   if (!gltfModel) return null;
-
   return (
-    <primitive
-      object={gltfModel.scene}
-      ref={ref}
-      scale={[scaleValue, scaleValue, scaleValue]}
-      {...props}
-      onClick={(event) => click(!clicked)}
-    />
+    <group position={[1, -2, 2]} rotation={[1, 1, 0]}>
+      <primitive object={gltfModel.scene} ref={ref} {...props} />
+    </group>
   );
 }
 
@@ -48,6 +37,7 @@ export const render = createRender(() => {
           <BlenderModel position={[2, -2, -2]} torusModelUrl={torusname} />
         </Suspense>
         <OrbitControls />
+        <perspectiveCamera position={[1, -3, 4]} />
       </Canvas>
     </div>
   );
