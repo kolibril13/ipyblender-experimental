@@ -8,8 +8,11 @@
 		"@emotion/react": "^11.11.1",
 		"@emotion/styled": "^11.11.0",
 		"@mui/material": "^5.14.8",
+		"@react-three/fiber": "^8.14.1",
+		"@types/three": "^0.156.0",
 		"react": "^18.2.0",
-		"react-dom": "^18.2.0"
+		"react-dom": "^18.2.0",
+		"three": "^0.156.1"
 	},
 	"devDependencies": {
 		"esbuild": "^0.19.2"
