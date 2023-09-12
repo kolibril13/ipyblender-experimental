@@ -50,6 +50,6 @@ class BlenderInteractiveWidget(anywidget.AnyWidget):
     def _observe_count(self, change):
         self.base64Image = render_to_image(self.count, self.svalue)
 
-    _esm = pathlib.Path(__file__).parent / "static" / "widget.js"
+    _esm = pathlib.Path(__file__).parent / "static" / "widget2.js"
     # _css = pathlib.Path(__file__).parent / "static" / "widget.css"
 
