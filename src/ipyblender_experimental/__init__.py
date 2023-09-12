@@ -41,7 +41,7 @@ class BlenderInteractiveWidget(anywidget.AnyWidget):
     with open('./cube_model.gltf', 'r') as file:
         model_data = file.read()
 
-    torusname = Unicode('./cube_model.gltf').tag(sync=True)
+    torusname = Unicode(model_data).tag(sync=True)
 
     count = Int(0).tag(sync=True)
     svalue = Float(30).tag(sync=True)
