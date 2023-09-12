@@ -40,13 +40,14 @@ class BlenderInteractiveWidget(anywidget.AnyWidget):
 
 
 
-    with open('./model_torus.gltf', 'r') as file:
-        model_data = file.read()
+    
 
-    torusname = Unicode(model_data).tag(sync=True)
 
     count = Int(0).tag(sync=True)
     svalue = Float(30).tag(sync=True)
+
+    model_data = render_to_gltf_model(count, svalue)
+    torusname = Unicode(model_data).tag(sync=True)
 
     @observe("svalue")
     def _observe_svalue(self, change):
