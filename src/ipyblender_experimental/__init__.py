@@ -1,7 +1,7 @@
 import importlib.metadata
 import pathlib
 from .render_to_image import render_to_image
-
+from .render_to_gltf_model import render_to_gltf_model
 import anywidget
 from traitlets import Int, Unicode, observe,Float
 
@@ -37,6 +37,8 @@ class BlenderInteractiveWidget(anywidget.AnyWidget):
     base64Image = Unicode(
         "data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
     ).tag(sync=True)
+
+
 
     with open('./model_torus.gltf', 'r') as file:
         model_data = file.read()
