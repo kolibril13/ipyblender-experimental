@@ -38,7 +38,7 @@ class BlenderInteractiveWidget(anywidget.AnyWidget):
         "data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
     ).tag(sync=True)
 
-    with open('./cube_model.gltf', 'r') as file:
+    with open('./model_torus.gltf', 'r') as file:
         model_data = file.read()
 
     torusname = Unicode(model_data).tag(sync=True)
