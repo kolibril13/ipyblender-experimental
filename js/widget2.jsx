@@ -1,5 +1,5 @@
 import { createRender, useModelState } from "@anywidget/react";
-import React, { useRef, useState, Suspense } from "react";
+import React, { useRef, useState, useEffect, Suspense } from "react";
 import { Canvas, useFrame, useLoader, extend } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "@react-three/drei";
@@ -142,16 +142,24 @@ function BlenderModel(props) {
     ]
   }
   `;
-  const torusModelUrl = "./cube_model.gltf";
-  const gltf = useLoader(GLTFLoader, torusModelUrl);
+  const [gltfModel, setGltfModel] = useState(null);
+
+  useEffect(() => {
+    const loader = new GLTFLoader();
+    loader.parse(jsonStr, "", (result) => {
+      setGltfModel(result);
+    });
+  }, []);
 
   const scaleValue = clicked ? 1.5 : 1;
 
   useFrame((state, delta) => (ref.current.rotation.x += delta));
 
+  if (!gltfModel) return null;
+
   return (
     <primitive
-      object={gltf.scene}
+      object={gltfModel.scene}
       ref={ref}
       scale={[scaleValue, scaleValue, scaleValue]}
       {...props}
