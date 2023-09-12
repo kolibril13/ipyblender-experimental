@@ -6,7 +6,6 @@ import { OrbitControls } from "@react-three/drei";
 
 function BlenderModel(props) {
   const ref = useRef();
-  const [clicked, click] = useState(false);
   const jsonStr = props.torusModelUrl;
   const [gltfModel, setGltfModel] = useState(null);
 
@@ -32,13 +31,15 @@ export const render = createRender(() => {
     <div>
       <Canvas>
         <ambientLight />
-        <pointLight position={[1, 0, 1]} />
+        <pointLight position={[-1, 0, 1]} /> 
+        {/* -1 goes to 1 */}
         <Suspense fallback={null}>
           <BlenderModel position={[2, -2, -2]} torusModelUrl={torusname} />
         </Suspense>
-        <OrbitControls />
+        <OrbitControls enablePan={false} />
         <perspectiveCamera position={[1, -3, 4]} />
       </Canvas>
     </div>
   );
 });
+
