@@ -1,6 +1,6 @@
 import importlib.metadata
 import pathlib
-from .render_static import render_static_image
+from .render_to_image import render_to_image
 
 import anywidget
 from traitlets import Int, Unicode, observe,Float
@@ -22,11 +22,18 @@ class BlenderWidget(anywidget.AnyWidget):
 
     @observe("svalue")
     def _observe_svalue(self, change):
-        self.base64Image = render_static_image(self.count, self.svalue)
+        self.base64Image = render_to_image(self.count, self.svalue)
 
     @observe("count")
     def _observe_count(self, change):
-        self.base64Image = render_static_image(self.count, self.svalue)
+        self.base64Image = render_to_image(self.count, self.svalue)
 
     _esm = pathlib.Path(__file__).parent / "static" / "widget.js"
     # _css = pathlib.Path(__file__).parent / "static" / "widget.css"
+
+
+class BlenderInteractiveWidget(anywidget.AnyWidget):
+    print("BlenderInteractiveWidget")
+
+    _esm = pathlib.Path(__file__).parent / "static" / "widget2.js"
+

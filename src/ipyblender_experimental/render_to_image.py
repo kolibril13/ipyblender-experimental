@@ -3,7 +3,7 @@ import base64
 from pathlib import Path
 
 
-def render_static_image(counter, light_position):
+def render_to_image(counter, light_position):
     light_position_normed = light_position / 20
     # Delete all mesh objects from the scene
     bpy.ops.object.select_all(action="DESELECT")
