@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ipyblender_experimental"
-version = "0.1.0"
+version = "0.2.0"
 readme = "README.md"
 
 requires-python = "~=3.10.0"
@@ -16,7 +16,9 @@ dependencies = [
 ]
 
 [tool.hatch.build]
+only-packages = true
 artifacts = ["src/ipyblender_experimental/static/*"]
+
 
 [tool.hatch.build.hooks.jupyter-builder]
 build-function = "hatch_jupyter_builder.npm_builder"
