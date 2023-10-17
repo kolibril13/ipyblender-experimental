@@ -12,3 +12,8 @@ test.png
 *.glb
 
 .venv
+
+*.mp4
+
+*.blend
+*.blend1
