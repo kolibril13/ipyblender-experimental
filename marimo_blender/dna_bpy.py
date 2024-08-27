@@ -1,59 +1,14 @@
 import marimo
 
-__generated_with = "0.7.20"
+__generated_with = "0.8.3"
 app = marimo.App(width="medium")
 
 
 @app.cell
 def __():
     import base64
-    import pathlib
-    from pathlib import Path
-
     import bpy
-    import ipywidgets as widgets
-    from IPython.display import Image, clear_output, display
-    from traitlets import Any, Bool, Dict, Int, List, Tuple, Unicode, observe
-
-    import anywidget
-
-
-    class TldrawSetImage(anywidget.AnyWidget):
-        @staticmethod
-        def base64_to_image_dimensions(base64_img_string):
-            base64_img_string_only = base64_img_string.split(",")[1]
-            decoded_bytes = base64.b64decode(base64_img_string_only)
-            if decoded_bytes[:8] != b"\x89PNG\r\n\x1a\n":
-                raise ValueError("Invalid PNG file")
-            ihdr_start = 8
-            ihdr_end = decoded_bytes.find(b"IHDR") + 4 + 8
-            ihdr_chunk = decoded_bytes[ihdr_start:ihdr_end]
-            image_width = int.from_bytes(ihdr_chunk[8:12], byteorder="big")
-            image_height = int.from_bytes(ihdr_chunk[12:16], byteorder="big")
-            return image_width, image_height
-
-        def __init__(self, **kwargs):
-            super().__init__(**kwargs)
-
-        def set_image(self, base64img):
-            if not base64img:
-                raise ValueError("No image provided")
-
-            image_width, image_height = self.base64_to_image_dimensions(base64img)
-            self.image_dimensions = (int(image_width / 2), int(image_height / 2))
-            self.base64img = base64img
-
-        base64img = Unicode("").tag(sync=True)
-        image_dimensions = Tuple(Int(), Int(), default_value=(0, 0)).tag(sync=True)
-
-
-        length = Int(100).tag(sync=True)
-        coord = List().tag(sync=True)
-
-        path_root = pathlib.Path().home()
-        _esm = path_root / "projects/jupyter-tldraw/src/tldraw/static" / "image_set.js"
-        _css = path_root / "projects/jupyter-tldraw/src/tldraw/static" / "image_set.css"
-
+    from tldraw import TldrawSetImage
 
 
     # Constants
@@ -128,31 +83,16 @@ def __():
 
     bpy.ops.wm.open_mainfile(filepath="dna.blend")
     return (
-        Any,
-        Bool,
         COLLECTION_NAME,
-        Dict,
-        Image,
-        Int,
-        List,
-        Path,
         RENDER_PATH,
         SCALE_FACTOR,
         TldrawSetImage,
-        Tuple,
-        Unicode,
-        anywidget,
         base64,
         bpy,
-        clear_output,
         clear_previous_curve,
         create_curve_from_points,
-        display,
-        observe,
-        pathlib,
         render_and_display_image,
         scale_down_points,
-        widgets,
     )
 
 
@@ -175,12 +115,8 @@ def __(
     coord_data = widget.coord
     points = [(item['x'], -item['y']) for item in coord_data]
     scaled_points = scale_down_points(points)
-
     create_curve_from_points(scaled_points)
-
     base64_img_string = render_and_display_image()
-
-
     mo.image(src=base64_img_string)
     return base64_img_string, coord_data, points, scaled_points
 
@@ -194,12 +130,6 @@ def __(base64_img_string, widget):
 @app.cell
 def __(base64_img_string):
     base64_img_string
-    return
-
-
-@app.cell
-def __(base64_img_string, widget):
-    widget.set_image(base64img=base64_img_string)
     return
 
 
