@@ -107,7 +107,6 @@ def __(TldrawSetImage):
 @app.cell
 def __(
     create_curve_from_points,
-    mo,
     render_and_display_image,
     scale_down_points,
     widget,
@@ -117,20 +116,8 @@ def __(
     scaled_points = scale_down_points(points)
     create_curve_from_points(scaled_points)
     base64_img_string = render_and_display_image()
-    mo.image(src=base64_img_string)
-    return base64_img_string, coord_data, points, scaled_points
-
-
-@app.cell
-def __(base64_img_string, widget):
     widget.set_image(base64img=base64_img_string)
-    return
-
-
-@app.cell
-def __(base64_img_string):
-    base64_img_string
-    return
+    return base64_img_string, coord_data, points, scaled_points
 
 
 if __name__ == "__main__":
