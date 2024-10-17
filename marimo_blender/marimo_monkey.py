@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.7.20"
+__generated_with = "0.8.3"
 app = marimo.App(width="medium")
 
 
@@ -11,9 +11,6 @@ def __():
     import matplotlib.pyplot as plt
     import matplotlib.image as mpimg
 
-    # Set render resolution
-    bpy.context.scene.render.resolution_x = 300
-    bpy.context.scene.render.resolution_y = 300
 
     # Enable RGBA (including alpha channel) and set the alpha mode to 'TRANSPARENT'
     bpy.context.scene.render.image_settings.file_format = 'PNG'
@@ -28,6 +25,16 @@ def __():
 
 
 @app.cell
+def __(bpy):
+    # Set render resolution
+    bpy.context.scene.render.resolution_x = 800
+    bpy.context.scene.render.resolution_y = 300
+    bpy.context.object
+
+    return
+
+
+@app.cell
 def __(mo):
     slider = mo.ui.slider(start=1, stop=100, label="Slider", value=3)
     slider
@@ -36,7 +43,7 @@ def __(mo):
 
 @app.cell
 def __(bpy, monkey, mpimg, plt, slider):
-    monkey.rotation_euler.z = slider.value * 0.01
+    monkey.rotation_euler.y = slider.value * 0.01
     bpy.context.view_layer.update()
 
     bpy.ops.render.render()
@@ -49,6 +56,24 @@ def __(bpy, monkey, mpimg, plt, slider):
     plt.axis('off')
     plt.gca()
     return img, path
+
+
+@app.cell
+def __():
+    return
+
+
+@app.cell
+def __():
+    i =0
+    print(i)
+    return i,
+
+
+@app.cell
+def __():
+    i += 1
+    return i,
 
 
 @app.cell
