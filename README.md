@@ -13,8 +13,6 @@ uv venv --python 3.11
 uv pip install bpy ipykernel
 ```
 
-
-
 # Funding
 
 From March 2024 to August 2024, ipyblenders's development was funded by the German Federal Ministry of Education and Research as part of the Prototype Fund by the Open Knowledge Foundation Germany.
