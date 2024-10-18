@@ -9,17 +9,10 @@ Only compatible with **Python 3.11**!
 
 ## Installation
 ```
-python3.11 -m venv .venv && source .venv/bin/activate
-pip install ipyblender_experimental
-touch hello.ipynb
+uv venv --python 3.11   
+uv pip install bpy ipykernel
 ```
 
-## Usage
-
-```python
-from ipyblender_experimental import BlenderWidget
-BlenderWidget()
-```
 
 
 # Funding
