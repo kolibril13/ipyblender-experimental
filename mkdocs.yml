@@ -2,7 +2,9 @@ site_name: Bpy Gallery
 
 nav:
   - Home: index.md
-  - DEMO: n1a_objects.ipynb
+  - Objects: n1objects.ipynb
+  - Simple data: n2data_simple.ipynb
+  - Attributes: n3data_attributes.ipynb
 
 theme:
   name: material
